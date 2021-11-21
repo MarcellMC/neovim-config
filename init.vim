@@ -136,6 +136,11 @@ noremap <leader>s <Esc>:w<CR>
 xnoremap J :move '>+1<CR>gv-gv
 xnoremap K :move '<-2<CR>gv-gv
 
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+
 "" Fugitive (Git)
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :GBranch<CR>
