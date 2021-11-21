@@ -133,6 +133,9 @@ noremap <C-k> <C-y>
 noremap <leader>k <C-u>
 noremap <leader>s <Esc>:w<CR>
 
+xnoremap J :move '>+1<CR>gv-gv
+xnoremap K :move '<-2<CR>gv-gv
+
 "" Fugitive (Git)
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :GBranch<CR>
