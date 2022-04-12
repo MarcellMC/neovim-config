@@ -62,10 +62,11 @@ Plug 'yuttie/comfortable-motion.vim'
 " -- LuaLine
 Plug 'nvim-lualine/lualine.nvim'
 
+" -- Dev Icons
 Plug 'kyazdani42/nvim-web-devicons'
 
-" -- ChadTree
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+" -- NerdTree
+Plug 'preservim/nerdtree'
 
 " -- Telescope
 Plug 'BurntSushi/ripgrep'
@@ -76,7 +77,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " Harpoon
-
 Plug 'ThePrimeagen/harpoon'
 
 " -- Debug
@@ -212,6 +212,21 @@ noremap <C-k> 3<C-y>
 nnoremap <Up> <C-y>
 nnoremap <Down> <C-e>
 
+" -- NerdTree
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>fe :NERDTreeFind<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+
+
+
 " -- Resize windows with Ctrl-Arrows
 nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
@@ -251,9 +266,6 @@ nnoremap <leader>hj :lua require("harpoon.ui").nav_file(1)<CR>                  
 nnoremap <leader><Tab> :lua require("harpoon.ui").nav_next()<CR>                   -- navigates to next mark
 nnoremap <leader><C-Tab>:lua require("harpoon.ui").nav_prev()<CR>                   -- navigates to previous mark
 
-" -- CHADTree
-nnoremap <leader>e :CHADopen<CR>
-
 " -- Fugitive (Git)
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :GBranch<CR>
@@ -263,7 +275,6 @@ nnoremap <leader>gj :diffget //2<CR>
 " -- Find files using Telescope command-line sugar.
 nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fb <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fo <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
