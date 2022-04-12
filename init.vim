@@ -67,6 +67,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " -- NerdTree
 Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " -- Telescope
 Plug 'BurntSushi/ripgrep'
